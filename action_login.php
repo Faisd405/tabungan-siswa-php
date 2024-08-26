@@ -15,11 +15,14 @@ $user = $data->fetch_assoc();
 
 if (!$user) {
     header('Location: login.php?error=username');
+    return;
 }
 
 if (!password_verify($password, $user['password'])) {
     header('Location: login.php?error=password');
+    return;
 }
+
 
 session_start();
 $_SESSION['user'] = $user;

@@ -1,8 +1,8 @@
 -- Seeder untuk tabel users
 INSERT INTO `users` (`username`, `password`, `role`, `created_at`, `updated_at`) VALUES
-('admin', '$2y$10$Tkh8ztlZ/gfR8.wgvzA9cO2n8eJ1.jfNyD1eY/WiZOl/HX0CKB12m', 'admin', NOW(), NOW()), -- Password: admin123
-('staff1', '$2y$10$uwMvXKoN1uc/Kl6uR8QHneQDXpuHRbkM7M5B7.t1lUlJ.y6b/VTeG', 'staff', NOW(), NOW()), -- Password: staff123
-('siswa1', '$2y$10$kmjUzZCQYKPqf93HUZcFDeP8n2uHqT9hXm4ptEtpeB5.M8/MdkM4m', 'siswa', NOW(), NOW()); -- Password: siswa123
+('admin', '$2y$10$h10fb8fhf49UhnW2ZJJT.uPda5ZK3BlYJezGwZpodA3OYs/N7FodG', 'admin', NOW(), NOW()), -- Password: admin123
+('staff1', '$2y$10$Hq7CnHbCQL46uROXexZz1.hl6dIOE/Sp7CYZTmeC.n/7ZL9bRkTwO', 'staff', NOW(), NOW()), -- Password: staff123
+('siswa1', '$2y$10$ruGcJBc6EjWib1P9lfSKc.YTGUHGJgcJoTHmjPvvSMUMNt8/3pfT6', 'siswa', NOW(), NOW()); -- Password: siswa123
 
 -- Seeder untuk tabel students
 INSERT INTO `students` (`user_id`, `nis`, `name`, `class`, `date_of_birth`, `address`, `parent_name`, `created_at`, `updated_at`) VALUES
