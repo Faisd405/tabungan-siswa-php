@@ -27,7 +27,7 @@
                                         <div class="card-header-form d-flex">
                                             <form class="mr-2">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Search">
+                                                    <input type="text" class="form-control" placeholder="Cari Nama" name="search">
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                                     </div>
@@ -56,7 +56,12 @@
                                                 <tbody>
 
                                                     <?php
-                                                    $data = $conn->query("SELECT * FROM students");
+                                                    if (!empty($_GET['search'])) {
+                                                        $search = $_GET['search'];
+                                                        $data = $conn->query("SELECT * FROM students WHERE name LIKE '%$search%'");
+                                                    } else {
+                                                        $data = $conn->query("SELECT * FROM students");
+                                                    }
 
                                                     foreach ($data as $key => $value) {
                                                     ?>
