@@ -1,4 +1,5 @@
 <?php include_once '../../layout/header.php'; ?>
+<?php include_once '../../config/authorization.php'; ?>
 
 <body>
     <div id="app">

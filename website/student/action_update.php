@@ -1,6 +1,7 @@
 <?php
 
 include_once '../../config/database.php';
+include_once '../../config/authorization.php';
 
 // Update Student
 $id = $_POST['id'];

@@ -1,6 +1,7 @@
 <?php
 
 include_once '../../config/database.php';
+include_once '../../config/authorization.php';
 
 // Student
 $nis = $_POST['nis'];

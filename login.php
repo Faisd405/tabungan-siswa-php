@@ -16,12 +16,12 @@
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="#" class="needs-validation" novalidate="">
+                                <form method="POST" action="action_login.php" class="needs-validation" novalidate="">
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email" required autofocus>
+                                        <label for="username">Username</label>
+                                        <input id="username" type="username" class="form-control" name="username" required autofocus>
                                         <div class="invalid-feedback">
-                                            Please fill in your email
+                                            Please fill in your username
                                         </div>
                                     </div>
 
