@@ -11,11 +11,11 @@
                 <section class="section">
 
                     <div class="section-header">
-                        <h1>Student</h1>
+                        <h1>Users</h1>
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                             <div class="breadcrumb-item"><a href="#">Datamaster</a></div>
-                            <div class="breadcrumb-item">Student</div>
+                            <div class="breadcrumb-item">Users</div>
                         </div>
                     </div>
                     <div class="section-body">
@@ -23,11 +23,11 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>List Student</h4>
+                                        <h4>List User</h4>
                                         <div class="card-header-form d-flex">
                                             <form class="mr-2">
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Cari Nama" name="search">
+                                                    <input type="text" class="form-control" placeholder="Cari Username" name="search">
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                                     </div>
@@ -42,12 +42,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>NIS</th>
-                                                        <th>Nama</th>
-                                                        <th>Nama Orangtua</th>
-                                                        <th>Kelas</th>
-                                                        <th>Tanggal Lahir</th>
-                                                        <th>Alamat</th>
+                                                        <th>Username</th>
+                                                        <th>Role</th>
                                                         <th style="width: 12%">Action</th>
                                                     </tr>
                                                 </thead>
@@ -56,9 +52,9 @@
                                                     <?php
                                                     if (!empty($_GET['search'])) {
                                                         $search = $_GET['search'];
-                                                        $data = $conn->query("SELECT * FROM students WHERE name LIKE '%$search%'");
+                                                        $data = $conn->query("SELECT * FROM users WHERE username LIKE '%$search%'");
                                                     } else {
-                                                        $data = $conn->query("SELECT * FROM students");
+                                                        $data = $conn->query("SELECT * FROM users");
                                                     }
 
                                                     foreach ($data as $key => $value) {
@@ -68,22 +64,10 @@
                                                                 <?php echo $key + 1; ?>
                                                             </td>
                                                             <td>
-                                                                <?php echo $value['nis']; ?>
+                                                                <?php echo $value['username']; ?>
                                                             </td>
                                                             <td>
-                                                                <?php echo $value['name']; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $value['parent_name']; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $value['class']; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $value['date_of_birth']; ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php echo $value['address']; ?>
+                                                                <span class="badge badge-primary"><?php echo $value['role']; ?></span>
                                                             </td>
                                                             <td style="width: 12%">
                                                                 <a href="edit.php?id=<?php echo $value['id']; ?>" class="btn btn-warning btn-sm btn-icon mb-2">
