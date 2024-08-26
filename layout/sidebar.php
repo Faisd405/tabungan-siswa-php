@@ -10,11 +10,11 @@
             <li class="menu-header">Home</li>
             <li><a class="nav-link" href="/"><i class="far fa-square"></i> <span>Dashboard</span></a></li>
             <li class="menu-header">Datamaster</li>
-            <li><a class="nav-link" href="/students"><i class="far fa-square"></i> <span>Student</span></a></li>
-            <li><a class="nav-link" href="/saving-accounts"><i class="far fa-square"></i> <span>Saving Accounts</span></a></li>
+            <li><a class="nav-link" href="/website/student/index.php"><i class="far fa-square"></i> <span>Student</span></a></li>
+            <li><a class="nav-link" href="/website/saving-accounts/index.php"><i class="far fa-square"></i> <span>Saving Accounts</span></a></li>
             <li class="menu-header">Product</li>
-            <li><a class="nav-link" href="/transactions"><i class="far fa-square"></i> <span>Transactions</span></a></li>
-            <li><a class="nav-link" href="/reports"><i class="far fa-square"></i> <span>Reports</span></a></li>
+            <li><a class="nav-link" href="/website/transactions/index.php"><i class="far fa-square"></i> <span>Transactions</span></a></li>
+            <li><a class="nav-link" href="/website/reports/index.php"><i class="far fa-square"></i> <span>Reports</span></a></li>
         </ul>
     </aside>
 </div>
