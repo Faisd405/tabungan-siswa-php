@@ -27,6 +27,20 @@ if (!password_verify($password, $user['password'])) {
     return;
 }
 
+if ($user['role'] == 'siswa') {
+    $query = "SELECT * FROM students WHERE user_id = " . $user['id'];
+    $data = $conn->query($query);
+    $student = $data->fetch_assoc();
+
+    if (!$student) {
+        header('Location: /tabungan-siswa-web/login.php');
+        $_SESSION['error'] = 'Siswa belum memiliki tabungan';
+        return;
+    }
+
+    $user['student_id'] = $student['id'];
+}
+
 
 $_SESSION['user'] = $user;
 header('Location: /tabungan-siswa-web/index.php');

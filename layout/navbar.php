@@ -10,7 +10,7 @@
                 </div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="/action_logout.php" class="dropdown-item has-icon text-danger">
+                <a href="/tabungan-siswa-web/action_logout.php" class="dropdown-item has-icon text-danger">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             </div>
