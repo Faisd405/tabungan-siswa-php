@@ -11,7 +11,7 @@
                 <section class="section">
 
                     <div class="section-header">
-                        <h1>Laporan</h1>
+                        <h1>List Laporan Transaksi</h1>
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                             <div class="breadcrumb-item">Laporan</div>
@@ -21,28 +21,33 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <h4>List Laporan Transaksi</h4>
-                                        <div class="card-header-form d-flex">
-                                            <form class="mr-2 d-flex">
-                                                <div class="input-group mr-2">
-                                                    <input type="date" class="form-control" placeholder="Cari Tanggal" name="date" value="<?php echo $_GET['date'] ?? ''; ?>">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    <div class="card-body p-0">
+                                        <div class="p-4">
+                                            <form>
+                                                <div class="row">
+                                                    <div class="form-group col-4 mr-2 mb-2">
+                                                        <input type="text" class="form-control" placeholder="Cari Nomer Akun" name="search" value="<?php echo $_GET['search'] ?? ''; ?>">
+                                                    </div>
+                                                    <div class="form-group col-4 mr-2 mb-2">
+                                                        <select class="form-control" name="transaction_type" id="transaction_type" required>
+                                                            <option value="">Pilih Jenis Transaksi</option>
+                                                            <option value="deposit" <?php echo isset($_GET['transaction_type']) && $_GET['transaction_type'] == 'deposit' ? 'selected' : ''; ?>>Deposit</option>
+                                                            <option value="withdrawal" <?php echo isset($_GET['transaction_type']) && $_GET['transaction_type'] == 'withdrawal' ? 'selected' : ''; ?>>Withdraw</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group col-4 mr-2 mb-2">
+                                                        <input type="date" class="form-control" placeholder="Cari Tanggal" name="date" value="<?php echo $_GET['date'] ?? ''; ?>">
                                                     </div>
                                                 </div>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Cari Nama" name="search" value="<?php echo $_GET['search'] ?? ''; ?>">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                                    </div>
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn btn-primary">
+                                                        Search
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger ml-2" onclick="window.location.href = 'index.php'">
+                                                        Reset
+                                                    </button>
                                                 </div>
                                             </form>
-                                        </div>
-                                    </div>
-                                    <div class="card-body p-0">
-                                        <div>
-                                            
                                         </div>
                                         <div class="table-responsive mb-4">
                                             <table class="table table-striped">
@@ -59,12 +64,28 @@
                                                 <tbody>
 
                                                     <?php
-                                                    if (!empty($_GET['search'])) {
-                                                        $search = $_GET['search'];
-                                                        $data = $conn->query("SELECT * FROM transactions LEFT JOIN savings_accounts ON transactions.account_id = savings_accounts.id LEFT JOIN users ON transactions.staff_id = users.id WHERE savings_accounts.account_number LIKE '%$search%'");
-                                                    } else {
-                                                        $data = $conn->query("SELECT * FROM transactions LEFT JOIN savings_accounts ON transactions.account_id = savings_accounts.id LEFT JOIN users ON transactions.staff_id = users.id");
+                                                    $where = [];
+                                                    if (isset($_GET['date']) && $_GET['date'] != '') {
+                                                        $where[] = "transaction_date LIKE '%{$_GET['date']}%'";
                                                     }
+
+                                                    if (isset($_GET['search']) && $_GET['search'] != '') {
+                                                        $where[] = "account_number LIKE '%" . $_GET['search'] . "%'";
+                                                    }
+
+                                                    if (isset($_GET['transaction_type']) && $_GET['transaction_type'] != '') {
+                                                        $where[] = "transaction_type = '{$_GET['transaction_type']}'";
+                                                    }
+
+                                                    $where = implode(' AND ', $where);
+
+                                                    if ($where == '') {
+                                                        $where = '1';
+                                                    }
+
+                                                    $query = "SELECT transactions.id, transactions.transaction_date, transactions.transaction_type, transactions.amount, savings_accounts.account_number, users.username FROM transactions LEFT JOIN savings_accounts ON transactions.account_id = savings_accounts.id LEFT JOIN users ON transactions.staff_id = users.id WHERE $where";
+
+                                                    $data = $conn->query($query);
 
                                                     foreach ($data as $key => $value) {
                                                     ?>
