@@ -53,7 +53,7 @@
                                                     if ($_SESSION['user']['role'] != 'admin') {
                                                         $query = "SELECT * FROM users WHERE role != 'admin' AND role != 'staff'";
                                                     } else {
-                                                        $query = "SELECT * FROM users";
+                                                        $query = "SELECT * FROM users WHERE role != 'admin'";
                                                     }
 
                                                     if (!empty($_GET['search'])) {
