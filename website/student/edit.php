@@ -45,11 +45,11 @@ if (!$student) {
                                             <input type="hidden" name="id" value="<?php echo $student['id'] ?>">
                                             <div class="form-group row mb-4">
                                                 <label for="user_id" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
-                                                    Pengguna (Optional)
+                                                    Akun (Optional)
                                                 </label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <?php
-                                                    $users = mysqli_query($conn, "SELECT id,username FROM users WHERE role='siswa'");
+                                                    $users = mysqli_query($conn, "SELECT id,username FROM users WHERE role='siswa' AND id NOT IN (SELECT user_id FROM students)");
                                                     ?>
                                                     <select class="form-control" name="user_id" id="user_id">
                                                         <option value="">Pilih Siswa</option>
