@@ -54,7 +54,7 @@ if (!$users) {
                                                 <div class="col-sm-12 col-md-7">
                                                     <select class="form-control" name="role" id="role">
                                                         <?php
-                                                        if ($_SESSION['role'] == 'admin') { ?>
+                                                        if ($_SESSION['user']['role'] == 'admin') { ?>
                                                         <option value="staff" <?php echo $users['role'] == 'staff' ? 'selected' : '' ?>>Staff</option>
                                                         <?php } ?>
                                                         <option value="siswa" <?php echo $users['role'] == 'siswa' ? 'selected' : '' ?>>Siswa</option>

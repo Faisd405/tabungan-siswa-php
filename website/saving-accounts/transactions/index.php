@@ -101,7 +101,7 @@ if (!$savingAccount) {
                                                         <th>Tanggal</th>
                                                         <th>Jenis Transaksi</th>
                                                         <th>Nominal</th>
-                                                        <th>Staff Name</th>
+                                                        <th>Nama Staff</th>
                                                         <th>Detail</th>
                                                     </tr>
                                                 </thead>
@@ -181,7 +181,7 @@ if (!$savingAccount) {
                         <input type="text" name="account_id" value="<?php echo $accountId; ?>" hidden>
                         <div class="form-group">
                             <label for="transaction_date">Transaction Date</label>
-                            <input type="datetime-local" class="form-control" name="transaction_date" id="transaction_date" required>
+                            <input type="datetime-local" step="any" class="form-control" name="transaction_date" id="transaction_date" required>
                         </div>
                         <div class="form-group">
                             <label for="transaction_type">Transaction Type</label>
@@ -212,8 +212,8 @@ if (!$savingAccount) {
     </div>
 
     <?php include_once '../../../layout/script.php'; ?>
-    <script src="/assets/js/page/bootstrap-modal.js"></script>
-    <script src="/assets/modules/cleave-js/dist/cleave.min.js"></script>
+    <script src="/tabungan-siswa-web/assets/js/page/bootstrap-modal.js"></script>
+    <script src="/tabungan-siswa-web/assets/modules/cleave-js/dist/cleave.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var cleave = new Cleave('.currency', {
@@ -233,9 +233,14 @@ if (!$savingAccount) {
                 $('#formModal').find('form').attr('action', 'action_update.php');
 
                 $('#formModal').find('[name="id"]').val(id);
+                
+                date = date.replace(' ', 'T');
+
                 $('#formModal').find('[name="transaction_date"]').val(date);
                 $('#formModal').find('[name="transaction_type"]').val(type);
                 $('#formModal').find('[name="amount"]').val(amount);
+
+                $('#formModal').find('.modal-title').text('Edit Transaksi');
             });
 
             $('#addModal').on('click', function() {
@@ -244,6 +249,8 @@ if (!$savingAccount) {
                 $('#formModal').find('[name="transaction_date"]').val('<?php echo date('Y-m-d\TH:i'); ?>');
                 $('#formModal').find('[name="transaction_type"]').val('deposit');
                 $('#formModal').find('[name="amount"]').val('');
+
+                $('#formModal').find('.modal-title').text('Tambah Transaksi');
             });
             
             $('.deleteModal').click(function() {

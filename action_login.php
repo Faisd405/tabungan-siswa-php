@@ -16,17 +16,17 @@ $data = $conn->query($query);
 $user = $data->fetch_assoc();
 
 if (!$user) {
-    header('Location: login.php');
+    header('Location: /tabungan-siswa-web/login.php');
     $_SESSION['error'] = 'User tidak ditemukan';
     return;
 }
 
 if (!password_verify($password, $user['password'])) {
-    header('Location: login.php');
+    header('Location: /tabungan-siswa-web/login.php');
     $_SESSION['error'] = 'Password salah';
     return;
 }
 
 
 $_SESSION['user'] = $user;
-header('Location: ../index.php');
+header('Location: /tabungan-siswa-web/index.php');

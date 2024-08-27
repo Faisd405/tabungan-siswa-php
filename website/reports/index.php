@@ -29,7 +29,7 @@
                                                         <input type="text" class="form-control" placeholder="Cari Nomer Akun" name="search" value="<?php echo $_GET['search'] ?? ''; ?>">
                                                     </div>
                                                     <div class="form-group col-4 mr-2 mb-2">
-                                                        <select class="form-control" name="transaction_type" id="transaction_type" required>
+                                                        <select class="form-control" name="transaction_type" id="transaction_type">
                                                             <option value="">Pilih Jenis Transaksi</option>
                                                             <option value="deposit" <?php echo isset($_GET['transaction_type']) && $_GET['transaction_type'] == 'deposit' ? 'selected' : ''; ?>>Deposit</option>
                                                             <option value="withdrawal" <?php echo isset($_GET['transaction_type']) && $_GET['transaction_type'] == 'withdrawal' ? 'selected' : ''; ?>>Withdraw</option>

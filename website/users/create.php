@@ -37,7 +37,7 @@
                                                 <div class="col-sm-12 col-md-7">
                                                     <select class="form-control" name="role" id="role">
                                                         <?php
-                                                        if ($_SESSION['role'] == 'admin') { ?>
+                                                        if ($_SESSION['user']['role'] == 'admin') { ?>
                                                         <option value="staff">Staff</option>
                                                         <?php } ?>
                                                         <option value="siswa">Siswa</option>

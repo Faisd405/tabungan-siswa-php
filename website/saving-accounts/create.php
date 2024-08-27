@@ -76,7 +76,7 @@
     </div>
 
     <?php include_once '../../layout/script.php'; ?>
-    <script src="/assets/modules/cleave-js/dist/cleave.min.js"></script>
+    <script src="/tabungan-siswa-web/assets/modules/cleave-js/dist/cleave.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var cleave = new Cleave('.currency', {

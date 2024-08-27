@@ -5,5 +5,5 @@ if (!isset($_SESSION)) {
 }
 
 if (!isset($_SESSION['user'])) {
-    header('Location: /login.php');
+    header('Location: /tabungan-siswa-web/login.php');
 }

@@ -9,7 +9,7 @@ $password = $_POST['password'];
 $role = $_POST['role'];
 
 if (!in_array($role, ['staff', 'siswa'])) {
-    header('Location: index.php');
+    header('Location: create.php');
 }
 
 // Query

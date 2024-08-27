@@ -15,7 +15,7 @@ $data = $conn->query("SELECT * FROM students WHERE id = $studentId");
 $student = $data->fetch_assoc();
 
 if (!$student) {
-    header('Location: index.php');
+    header('Location: create.php');
     $_SESSION['error'] = 'Siswa tidak ditemukan';
     return;
 }
@@ -24,7 +24,7 @@ $data = $conn->query("SELECT * FROM savings_accounts WHERE student_id = $student
 $student = $data->fetch_assoc();
 
 if ($student) {
-    header('Location: index.php');
+    header('Location: create.php');
     $_SESSION['error'] = 'Siswa sudah memiliki tabungan';
     return;
 }

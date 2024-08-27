@@ -28,6 +28,8 @@ $transaction = $data->fetch_assoc();
 
 if ($transaction) {
     header('Location: index.php');
+    $_SESSION['error'] = 'Masih ada data transaksi yang terkait';
+    return;
 }
 
 // Execute

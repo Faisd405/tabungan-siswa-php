@@ -66,31 +66,31 @@ if (!$student) {
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
-                                                <label for="name" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Name</label>
+                                                <label for="name" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <input type="text" class="form-control" name="name" id="name" value="<?php echo $student['name'] ?>" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
-                                                <label for="parent_name" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Parent Name</label>
+                                                <label for="parent_name" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Nama Orang tua</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <input type="text" class="form-control" name="parent_name" id="parent_name" value="<?php echo $student['parent_name'] ?>" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
-                                                <label for="class" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Class</label>
+                                                <label for="class" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kelas</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <input type="text" class="form-control" name="class" id="class" value="<?php echo $student['class'] ?>" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
-                                                <label for="date_of_birth" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Birth Date</label>
+                                                <label for="date_of_birth" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ulang Tahun</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <input type="date" class="form-control" name="date_of_birth" id="date_of_birth" value="<?php echo $student['date_of_birth'] ?>" required>
                                                 </div>
                                             </div>
                                             <div class="form-group row mb-4">
-                                                <label for="address" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Address</label>
+                                                <label for="address" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Alamat</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <textarea class="form-control" name="address" id="address" required><?php echo $student['address'] ?></textarea>
                                                 </div>
