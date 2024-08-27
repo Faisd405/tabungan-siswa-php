@@ -16,17 +16,23 @@ $query = "UPDATE transactions SET transaction_date = '$transactionDate', transac
 // Check Transaction\
 $transaction = $conn->query("SELECT * FROM transactions WHERE id = $id")->fetch_assoc();
 if (!$transaction) {
-    header('Location: index.php?id=' . $id . '&error=Transaction not found');
+    header('Location: index.php?id=' . $id);
+    session_start();
+    $_SESSION['error'] = 'Akun tidak ditemukan';
     exit();
 }
 
 if ($transactionType == 'Withdraw' && $account['balance'] < $amount) {
-    header('Location: index.php?error=Insufficient balance');
+    header('Location: index.php');
+    session_start();
+    $_SESSION['error'] = 'Saldo tidak mencukupi';
     exit();
 }
 
 if ($amount <= 0) {
-    header('Location: index.php?error=Amount must be greater than 0');
+    header('Location: index.php');
+    session_start();
+    $_SESSION['error'] = 'Jumlah harus lebih dari 0';
     exit();
 }
 

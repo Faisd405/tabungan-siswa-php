@@ -52,9 +52,9 @@
                                                     <?php
                                                     if (!empty($_GET['search'])) {
                                                         $search = $_GET['search'];
-                                                        $data = $conn->query("SELECT * FROM users WHERE username LIKE '%$search%'");
+                                                        $data = $conn->query("SELECT * FROM users WHERE role != 'admin' WHERE username LIKE '%$search%'");
                                                     } else {
-                                                        $data = $conn->query("SELECT * FROM users");
+                                                        $data = $conn->query("SELECT * FROM users WHERE role != 'admin'");
                                                     }
 
                                                     foreach ($data as $key => $value) {
@@ -73,9 +73,9 @@
                                                                 <a href="edit.php?id=<?php echo $value['id']; ?>" class="btn btn-warning btn-sm btn-icon mb-2">
                                                                     <i class="fas fa-edit"></i>
                                                                 </a>
-                                                                <a href="#" class="btn btn-danger btn-sm btn-icon mb-2">
+                                                                <button class="btn btn-danger btn-sm btn-icon mb-2 deleteModal" data-id="<?php echo $value['id']; ?>" data-name="<?php echo $value['username']; ?>">
                                                                     <i class="fas fa-trash"></i>
-                                                                </a>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     <?php } ?>
@@ -94,6 +94,26 @@
     </div>
 
     <?php include_once '../../layout/script.php'; ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            $('.deleteModal').click(function() {
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                swal({
+                        title: "Are you sure?",
+                        text: "Setelah di hapus, anda tidak dapat membalikan data berikut " + name + "!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            window.location = "action_delete.php?id=" + id;
+                        }
+                    });
+            });
+        })
+    </script>
 </body>
 
 </html>

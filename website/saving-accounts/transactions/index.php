@@ -112,9 +112,9 @@ if (!$savingAccount) {
 
                                                     if (!empty($_GET['search'])) {
                                                         $search = $_GET['search'];
-                                                        $data = $conn->query("SELECT * FROM transactions INNER JOIN savings_accounts ON transactions.account_id = savings_accounts.id INNER JOIN users ON transactions.staff_id = users.id WHERE savings_accounts.account_number LIKE '%$search%' ORDER BY transactions.transaction_date DESC");
+                                                        $data = $conn->query("SELECT transactions.id, transactions.transaction_date, transactions.transaction_type, transactions.amount, users.username FROM transactions INNER JOIN users ON transactions.staff_id = users.id WHERE transactions.account_id = $accountId AND users.username LIKE '%$search%'");
                                                     } else {
-                                                        $data = $conn->query("SELECT * FROM transactions INNER JOIN savings_accounts ON transactions.account_id = savings_accounts.id INNER JOIN users ON transactions.staff_id = users.id WHERE savings_accounts.id = $accountId ORDER BY transactions.transaction_date DESC");
+                                                        $data = $conn->query("SELECT transactions.id, transactions.transaction_date, transactions.transaction_type, transactions.amount, users.username FROM transactions INNER JOIN users ON transactions.staff_id = users.id WHERE transactions.account_id = $accountId");
                                                     }
 
                                                     foreach ($data as $key => $value) {
@@ -143,9 +143,9 @@ if (!$savingAccount) {
                                                                 <button class="btn btn-warning btn-sm btn-icon mb-2 editModal" data-id="<?php echo $value['id']; ?>" data-date="<?php echo $value['transaction_date']; ?>" data-type="<?php echo $value['transaction_type']; ?>" data-amount="<?php echo $value['amount']; ?>">
                                                                     <i class="fas fa-edit"></i>
                                                                 </button>
-                                                                <a href="#" class="btn btn-danger btn-sm btn-icon mb-2">
+                                                                <button class="btn btn-danger btn-sm btn-icon mb-2 deleteModal" data-id="<?php echo $value['id']; ?>" data-name="<?php echo $value['transaction_date']; ?>">
                                                                     <i class="fas fa-trash"></i>
-                                                                </a>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     <?php } ?>
@@ -181,7 +181,7 @@ if (!$savingAccount) {
                         <input type="text" name="account_id" value="<?php echo $accountId; ?>" hidden>
                         <div class="form-group">
                             <label for="transaction_date">Transaction Date</label>
-                            <input type="datetime-local" class="form-control" name="transaction_date" id="transaction_date" required value="<?php echo date('Y-m-d'); ?>">
+                            <input type="datetime-local" class="form-control" name="transaction_date" id="transaction_date" required>
                         </div>
                         <div class="form-group">
                             <label for="transaction_type">Transaction Type</label>
@@ -241,9 +241,27 @@ if (!$savingAccount) {
             $('#addModal').on('click', function() {
                 $('#formModal').modal('show');
                 $('#formModal').find('form').attr('action', 'action_create.php');
-                $('#formModal').find('[name="transaction_date"]').val('<?php echo date('Y-m-d'); ?>');
+                $('#formModal').find('[name="transaction_date"]').val('<?php echo date('Y-m-d\TH:i'); ?>');
                 $('#formModal').find('[name="transaction_type"]').val('deposit');
                 $('#formModal').find('[name="amount"]').val('');
+            });
+            
+            $('.deleteModal').click(function() {
+                var id = $(this).data('id');
+
+                var name = $(this).data('name');
+                swal({
+                        title: "Are you sure?",
+                        text: "Once deleted you will not be able to recover data " + name + "!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            window.location = "action_delete.php?id=" + id;
+                        }
+                    });
             });
         });
     </script>

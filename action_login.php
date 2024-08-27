@@ -14,12 +14,16 @@ $data = $conn->query($query);
 $user = $data->fetch_assoc();
 
 if (!$user) {
-    header('Location: login.php?error=username');
+    header('Location: login.php');
+    session_start();
+    $_SESSION['error'] = 'User tidak ditemukan';
     return;
 }
 
 if (!password_verify($password, $user['password'])) {
-    header('Location: login.php?error=password');
+    header('Location: login.php');
+    session_start();
+    $_SESSION['error'] = 'Password salah';
     return;
 }
 
