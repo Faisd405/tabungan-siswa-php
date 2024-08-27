@@ -53,7 +53,10 @@ if (!$users) {
                                                 <label for="role" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <select class="form-control" name="role" id="role">
+                                                        <?php
+                                                        if ($_SESSION['role'] == 'admin') { ?>
                                                         <option value="staff" <?php echo $users['role'] == 'staff' ? 'selected' : '' ?>>Staff</option>
+                                                        <?php } ?>
                                                         <option value="siswa" <?php echo $users['role'] == 'siswa' ? 'selected' : '' ?>>Siswa</option>
                                                     </select>
                                                 </div>

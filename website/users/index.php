@@ -50,12 +50,18 @@
                                                 <tbody>
 
                                                     <?php
+                                                    if ($_SESSION['user']['role'] != 'admin') {
+                                                        $query = "SELECT * FROM users WHERE role != 'admin' AND role != 'staff'";
+                                                    } else {
+                                                        $query = "SELECT * FROM users";
+                                                    }
+
                                                     if (!empty($_GET['search'])) {
                                                         $search = $_GET['search'];
-                                                        $data = $conn->query("SELECT * FROM users WHERE role != 'admin' WHERE username LIKE '%$search%'");
-                                                    } else {
-                                                        $data = $conn->query("SELECT * FROM users WHERE role != 'admin'");
+                                                        $query = "$query WHERE username LIKE '%$search%'";
                                                     }
+
+                                                    $data = $conn->query($query);
 
                                                     foreach ($data as $key => $value) {
                                                     ?>

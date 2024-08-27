@@ -36,7 +36,10 @@
                                                 <label for="role" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Role</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <select class="form-control" name="role" id="role">
+                                                        <?php
+                                                        if ($_SESSION['role'] == 'admin') { ?>
                                                         <option value="staff">Staff</option>
+                                                        <?php } ?>
                                                         <option value="siswa">Siswa</option>
                                                     </select>
                                                 </div>
