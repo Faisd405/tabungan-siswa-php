@@ -33,7 +33,6 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <a href="create.php" class="btn btn-primary">ADD</a>
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
