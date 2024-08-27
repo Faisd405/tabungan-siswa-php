@@ -33,7 +33,7 @@
                                                 </label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <?php
-                                                    $users = mysqli_query($conn, "SELECT id,username FROM users WHERE role='siswa' AND id NOT IN (SELECT user_id FROM students)");
+                                                    $users = mysqli_query($conn, "SELECT users.id, users.username FROM users  LEFT JOIN students ON users.id = students.user_id WHERE users.role = 'siswa' AND students.user_id IS NULL;");
                                                     ?>
                                                     <select class="form-control" name="user_id" id="user_id">
                                                         <option value="">Pilih Siswa</option>
