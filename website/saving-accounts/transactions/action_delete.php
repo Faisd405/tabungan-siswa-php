@@ -5,7 +5,7 @@ include_once '../../../config/authorization.php';
 
 session_start();
 
-// Saving Account
+// Tabungan
 $id = $_GET['id'];
 
 // Query

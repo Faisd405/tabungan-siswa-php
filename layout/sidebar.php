@@ -26,13 +26,13 @@
                 <li>
                     <a class="nav-link" href="/website/student/index.php">
                         <i class="fas fa-user-graduate"></i>
-                        <span>Student</span>
+                        <span>Siswa</span>
                     </a>
                 </li>
                 <li>
                     <a class="nav-link" href="/website/saving-accounts/index.php">
                         <i class="fas fa-money-bill"></i>
-                        <span>Saving Accounts</span>
+                        <span>Tabungan</span>
                     </a>
                 </li>
                 <li class="menu-header">Reports</li>

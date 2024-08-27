@@ -3,7 +3,7 @@
 include_once '../../config/database.php';
 include_once '../../config/authorization.php';
 
-// Saving Account
+// Tabungan
 $studentId = $_POST['student_id'];
 $balance = str_replace(',', '', $_POST['balance']);
 
@@ -16,7 +16,7 @@ $student = $data->fetch_assoc();
 
 if (!$student) {
     header('Location: index.php');
-    $_SESSION['error'] = 'Student not found';
+    $_SESSION['error'] = 'Siswa tidak ditemukan';
     return;
 }
 
@@ -25,7 +25,7 @@ $student = $data->fetch_assoc();
 
 if ($student) {
     header('Location: index.php');
-    $_SESSION['error'] = 'Student already have saving account';
+    $_SESSION['error'] = 'Siswa sudah memiliki tabungan';
     return;
 }
 

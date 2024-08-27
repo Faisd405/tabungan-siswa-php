@@ -3,7 +3,7 @@
 include_once '../../config/database.php';
 include_once '../../config/authorization.php';
 
-// Update Student
+// Update Siswa
 $id = $_POST['id'];
 $nis = $_POST['nis'];
 $name = $_POST['name'];

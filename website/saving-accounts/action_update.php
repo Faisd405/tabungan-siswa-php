@@ -3,7 +3,7 @@
 include_once '../../config/database.php';
 include_once '../../config/authorization.php';
 
-// Update Saving Account
+// Update Tabungan
 $id = $_POST['id'];
 $studentId = $_POST['student_id'];
 
@@ -17,7 +17,7 @@ if (!$student) {
     return;
 }
 
-// Check if student already have saving account
+// Check if student already have Tabungan
 $data = $conn->query("SELECT * FROM savings_accounts WHERE student_id = $studentId");
 $student = $data->fetch_assoc();
 

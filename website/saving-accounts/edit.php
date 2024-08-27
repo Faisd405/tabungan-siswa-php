@@ -25,11 +25,11 @@ if (!$savingAccount) {
             <div class="main-content">
                 <section class="section">
                     <div class="section-header">
-                        <h1>Saving Accounts</h1>
+                        <h1>Tabungan</h1>
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                             <div class="breadcrumb-item"><a href="#">Datamaster</a></div>
-                            <div class="breadcrumb-item"><a href="index.php">Saving Accounts</a></div>
+                            <div class="breadcrumb-item"><a href="index.php">Tabungan</a></div>
                             <div class="breadcrumb-item">Edit</div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@ if (!$savingAccount) {
                                 <div class="card">
                                     <div class="card-header">
                                         <h4>
-                                            Edit Saving Account #<?= $savingAccount['account_number'] ?>
+                                            Edit Tabungan #<?= $savingAccount['account_number'] ?>
                                         </h4>
                                     </div>
                                     <div class="card-body p-0">
