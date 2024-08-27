@@ -1,10 +1,10 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Tabungan Siswa</a>
+            <a href="/tabungan-siswa-web/index.php">Tabungan Siswa</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">TS</a>
+            <a href="/tabungan-siswa-web/index.php">TS</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Home</li>
