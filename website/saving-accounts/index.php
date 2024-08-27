@@ -45,7 +45,7 @@
                                                         <th>Nama Siswa</th>
                                                         <th>Nomer Akun</th>
                                                         <th>Saldo</th>
-                                                        <th style="width: 12%">Action</th>
+                                                        <th style="width: 12%">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

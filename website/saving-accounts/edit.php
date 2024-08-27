@@ -38,10 +38,13 @@ if (!$savingAccount) {
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Edit Saving Accounts</h4>
+                                        <h4>
+                                            Edit Saving Account #<?= $savingAccount['account_number'] ?>
+                                        </h4>
                                     </div>
                                     <div class="card-body p-0">
-                                        <form method="POST" action="action_create.php">
+                                        <form method="POST" action="action_update.php">
+                                            <input type="hidden" name="id" value="<?php echo $savingAccount['id'] ?>">
                                             <div class="form-group row mb-4">
                                                 <label for="student_id" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Siswa</label>
                                                 <div class="col-sm-12 col-md-7">
@@ -54,19 +57,6 @@ if (!$savingAccount) {
                                                             <option value="<?= $student['id'] ?>" <?php if ($student['id'] == $savingAccount['id']) echo 'selected' ?>><?= $student['name'] ?></option>
                                                         <?php endwhile; ?>
                                                     </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row mb-4">
-                                                <label for="balance" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Saldo Awal</label>
-                                                <div class="col-sm-12 col-md-7">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                IDR
-                                                            </div>
-                                                        </div>
-                                                        <input type="text" name="balance" class="form-control currency" required value="<?= $savingAccount['balance'] ?>">
-                                                    </div>
                                                 </div>
                                             </div>
                                             <!-- JUSTIFY END -->

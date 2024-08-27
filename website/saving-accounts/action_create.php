@@ -16,10 +16,22 @@ $student = $data->fetch_assoc();
 
 if (!$student) {
     header('Location: index.php');
+    $_SESSION['error'] = 'Student not found';
+    return;
+}
+
+$data = $conn->query("SELECT * FROM savings_accounts WHERE student_id = $studentId");
+$student = $data->fetch_assoc();
+
+if ($student) {
+    header('Location: index.php');
+    $_SESSION['error'] = 'Student already have saving account';
+    return;
 }
 
 // Query
 $queryInsert = "INSERT INTO savings_accounts (student_id, balance, account_number) VALUES ('$studentId', '$balance', '$accountNumber')";
+
 
 // Execute
 if (!mysqli_query($conn, $queryInsert)) {

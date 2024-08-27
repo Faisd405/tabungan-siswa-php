@@ -11,8 +11,8 @@ INSERT INTO `students` (`user_id`, `nis`, `name`, `class`, `date_of_birth`, `add
 
 -- Seeder untuk tabel savings_accounts
 INSERT INTO `savings_accounts` (`student_id`, `account_number`, `balance`, `created_at`, `updated_at`) VALUES
-(1, 'SA001', 100000.00, NOW(), NOW()),
-(2, 'SA002', 50000.00, NOW(), NOW());
+(1, 'SA001', 60000.00, NOW(), NOW()),
+(2, 'SA002', 30000.00, NOW(), NOW());
 
 -- Seeder untuk tabel transactions
 INSERT INTO `transactions` (`account_id`, `transaction_type`, `amount`, `transaction_date`, `staff_id`, `created_at`, `updated_at`) VALUES

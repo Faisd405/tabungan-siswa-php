@@ -44,7 +44,7 @@
                                                         <th>No</th>
                                                         <th>Username</th>
                                                         <th>Role</th>
-                                                        <th style="width: 12%">Action</th>
+                                                        <th style="width: 12%">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

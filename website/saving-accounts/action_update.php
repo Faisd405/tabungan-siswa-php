@@ -3,21 +3,37 @@
 include_once '../../config/database.php';
 include_once '../../config/authorization.php';
 
-// Update Student
+// Update Saving Account
 $id = $_POST['id'];
-$nis = $_POST['nis'];
-$name = $_POST['name'];
-$parent_name = $_POST['parent_name'];
-$class = $_POST['class'];
-$date_of_birth = $_POST['date_of_birth'];
-$address = $_POST['address'];
+$studentId = $_POST['student_id'];
+
+// Check if student_id is exist
+$data = $conn->query("SELECT * FROM students WHERE id = $studentId");
+$student = $data->fetch_assoc();
+
+if (!$student) {
+    header('Location: index.php');
+    $_SESSION['error'] = 'Siswa tidak ditemukan';
+    return;
+}
+
+// Check if student already have saving account
+$data = $conn->query("SELECT * FROM savings_accounts WHERE student_id = $studentId");
+$student = $data->fetch_assoc();
+
+if ($student) {
+    header('Location: index.php');
+    $_SESSION['error'] = 'Siswa sudah memiliki tabungan';
+    return;
+}
 
 // Query
-$query = "UPDATE students SET nis = '$nis', name = '$name', parent_name = '$parent_name', class = '$class', date_of_birth = '$date_of_birth', address = '$address' WHERE id = $id";
+$queryUpdate = "UPDATE savings_accounts SET student_id = '$studentId' WHERE id = $id";
 
 // Execute
-if (mysqli_query($conn, $query)) {
-    header('Location: index.php');
-} else {
-    echo "Error: " . $query . "<br>" . mysqli_error($conn);
+if (!mysqli_query($conn, $queryUpdate)) {
+    echo "Error: " . $queryUpdate . "<br>" . mysqli_error($conn);
+    return;
 }
+
+header('Location: index.php');

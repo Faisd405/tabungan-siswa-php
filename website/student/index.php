@@ -49,7 +49,7 @@
                                                         <th>Kelas</th>
                                                         <th>Tanggal Lahir</th>
                                                         <th>Alamat</th>
-                                                        <th style="width: 12%">Action</th>
+                                                        <th style="width: 12%">Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
