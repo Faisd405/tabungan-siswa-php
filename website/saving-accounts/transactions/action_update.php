@@ -3,6 +3,8 @@
 include_once '../../../config/database.php';
 include_once '../../../config/authorization.php';
 
+session_start();
+
 // Update Transaction
 $id = $_POST['id'];
 $transactionDate = $_POST['transaction_date'];
@@ -17,21 +19,18 @@ $query = "UPDATE transactions SET transaction_date = '$transactionDate', transac
 $transaction = $conn->query("SELECT * FROM transactions WHERE id = $id")->fetch_assoc();
 if (!$transaction) {
     header('Location: index.php?id=' . $id);
-    session_start();
     $_SESSION['error'] = 'Akun tidak ditemukan';
     exit();
 }
 
 if ($transactionType == 'Withdraw' && $account['balance'] < $amount) {
     header('Location: index.php');
-    session_start();
     $_SESSION['error'] = 'Saldo tidak mencukupi';
     exit();
 }
 
 if ($amount <= 0) {
     header('Location: index.php');
-    session_start();
     $_SESSION['error'] = 'Jumlah harus lebih dari 0';
     exit();
 }

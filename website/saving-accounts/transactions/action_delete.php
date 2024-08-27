@@ -3,6 +3,8 @@
 include_once '../../../config/database.php';
 include_once '../../../config/authorization.php';
 
+session_start();
+
 // Saving Account
 $id = $_GET['id'];
 
@@ -13,7 +15,6 @@ $queryDelete = "DELETE FROM transactions WHERE id = $id";
 $transaction = $conn->query("SELECT id,account_id FROM transactions WHERE id = $id")->fetch_assoc();
 if (!$transaction) {
     header('Location: index.php?id=' . $id . '');
-    session_start();
     $_SESSION['error'] = 'Transaction not found';
     exit();
 }

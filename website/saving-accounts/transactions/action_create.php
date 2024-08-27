@@ -3,6 +3,8 @@
 include_once '../../../config/database.php';
 include_once '../../../config/authorization.php';
 
+session_start();
+
 // Transaction
 $accountId = $_POST['account_id'];
 $transactionDate = $_POST['transaction_date'];
@@ -14,21 +16,18 @@ $staffId = $_SESSION['user']['id'];
 $account = $conn->query("SELECT * FROM savings_accounts WHERE id = $accountId")->fetch_assoc();
 if (!$account) {
     header('Location: create.php');
-    session_start();
     $_SESSION['error'] = 'Akun tidak ditemukan';
     exit();
 }
 
 if ($transactionType == 'Withdraw' && $account['balance'] < $amount) {
     header('Location: create.php');
-    session_start();
     $_SESSION['error'] = 'Saldo tidak mencukupi';
     exit();
 }
 
 if ($amount <= 0) {
     header('Location: create.php');
-    session_start();
     $_SESSION['error'] = 'Jumlah harus lebih dari 0';
     exit();
 }

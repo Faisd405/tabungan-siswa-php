@@ -2,6 +2,8 @@
 
 include_once './config/database.php';
 
+session_start();
+
 // Login
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -15,19 +17,16 @@ $user = $data->fetch_assoc();
 
 if (!$user) {
     header('Location: login.php');
-    session_start();
     $_SESSION['error'] = 'User tidak ditemukan';
     return;
 }
 
 if (!password_verify($password, $user['password'])) {
     header('Location: login.php');
-    session_start();
     $_SESSION['error'] = 'Password salah';
     return;
 }
 
 
-session_start();
 $_SESSION['user'] = $user;
 header('Location: ../index.php');

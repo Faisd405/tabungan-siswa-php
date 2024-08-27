@@ -3,6 +3,8 @@
 include_once '../../config/database.php';
 include_once '../../config/authorization.php';
 
+session_start();
+
 // Saving Account
 $accountId = $_GET['id'];
 
@@ -16,7 +18,6 @@ $transaction = $data->fetch_assoc();
 
 if ($transaction) {
     header('Location: index.php');
-    session_start();
     $_SESSION['error'] = 'Masih ada data transaksi yang terkait';
     return;
 }

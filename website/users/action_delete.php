@@ -3,6 +3,8 @@
 include_once '../../config/database.php';
 include_once '../../config/authorization.php';
 
+session_start();
+
 // Saving Account
 $accountId = $_GET['id'];
 
@@ -16,7 +18,6 @@ $student = $data->fetch_assoc();
 
 if ($student) {
     header('Location: index.php');
-    session_start();
     $_SESSION['error'] = 'Masih ada data siswa yang terkait';
     return;
 }

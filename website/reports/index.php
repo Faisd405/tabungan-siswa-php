@@ -11,11 +11,10 @@
                 <section class="section">
 
                     <div class="section-header">
-                        <h1>Transactions</h1>
+                        <h1>Laporan</h1>
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                            <div class="breadcrumb-item"><a href="#">Datamaster</a></div>
-                            <div class="breadcrumb-item">Transactions</div>
+                            <div class="breadcrumb-item">Laporan</div>
                         </div>
                     </div>
                     <div class="section-body">
@@ -23,11 +22,17 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>List Transactions</h4>
+                                        <h4>List Laporan Transaksi</h4>
                                         <div class="card-header-form d-flex">
-                                            <form class="mr-2">
+                                            <form class="mr-2 d-flex">
+                                                <div class="input-group mr-2">
+                                                    <input type="date" class="form-control" placeholder="Cari Tanggal" name="date" value="<?php echo $_GET['date'] ?? ''; ?>">
+                                                    <div class="input-group-btn">
+                                                        <button class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                                    </div>
+                                                </div>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" placeholder="Cari Nama" name="search">
+                                                    <input type="text" class="form-control" placeholder="Cari Nama" name="search" value="<?php echo $_GET['search'] ?? ''; ?>">
                                                     <div class="input-group-btn">
                                                         <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                                     </div>
@@ -36,6 +41,9 @@
                                         </div>
                                     </div>
                                     <div class="card-body p-0">
+                                        <div>
+                                            
+                                        </div>
                                         <div class="table-responsive mb-4">
                                             <table class="table table-striped">
                                                 <thead>
@@ -45,7 +53,7 @@
                                                         <th>Tanggal</th>
                                                         <th>Jenis Transaksi</th>
                                                         <th>Nominal</th>
-                                                        <th>Staff Name</th>
+                                                        <th>Staff</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -53,9 +61,9 @@
                                                     <?php
                                                     if (!empty($_GET['search'])) {
                                                         $search = $_GET['search'];
-                                                        $data = $conn->query("SELECT * FROM transactions INNER JOIN savings_accounts ON transactions.account_id = savings_accounts.id INNER JOIN users ON transactions.staff_id = users.id WHERE savings_accounts.account_number LIKE '%$search%'");
+                                                        $data = $conn->query("SELECT * FROM transactions LEFT JOIN savings_accounts ON transactions.account_id = savings_accounts.id LEFT JOIN users ON transactions.staff_id = users.id WHERE savings_accounts.account_number LIKE '%$search%'");
                                                     } else {
-                                                        $data = $conn->query("SELECT * FROM transactions INNER JOIN savings_accounts ON transactions.account_id = savings_accounts.id INNER JOIN users ON transactions.staff_id = users.id");
+                                                        $data = $conn->query("SELECT * FROM transactions LEFT JOIN savings_accounts ON transactions.account_id = savings_accounts.id LEFT JOIN users ON transactions.staff_id = users.id");
                                                     }
 
                                                     foreach ($data as $key => $value) {
@@ -71,7 +79,9 @@
                                                                 <?php echo $value['transaction_date']; ?>
                                                             </td>
                                                             <td>
-                                                                <?php echo $value['transaction_type']; ?>
+                                                                <span class="badge badge-<?php echo $value['transaction_type'] == 'deposit' ? 'success' : 'danger'; ?>">
+                                                                    <?php echo $value['transaction_type']; ?>
+                                                                </span>
                                                             </td>
                                                             <td>
                                                                 <span class="currency">

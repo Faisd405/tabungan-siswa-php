@@ -34,13 +34,6 @@
                     <span>Saving Accounts</span>
                 </a>
             </li>
-            <li class="menu-header">Transactions</li>
-            <li>
-                <a class="nav-link" href="/website/transactions/index.php">
-                    <i class="fas fa-money-check"></i>
-                    <span>Transactions</span>
-                </a>
-            </li>
             <li class="menu-header">Reports</li>
             <li>
                 <a class="nav-link" href="/website/reports/index.php">
