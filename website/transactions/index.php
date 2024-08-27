@@ -11,11 +11,11 @@
                 <section class="section">
 
                     <div class="section-header">
-                        <h1>Saving Accounts</h1>
+                        <h1>Transactions</h1>
                         <div class="section-header-breadcrumb">
                             <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                             <div class="breadcrumb-item"><a href="#">Datamaster</a></div>
-                            <div class="breadcrumb-item">Saving Accounts</div>
+                            <div class="breadcrumb-item">Transactions</div>
                         </div>
                     </div>
                     <div class="section-body">
@@ -23,7 +23,7 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>List Saving Accounts</h4>
+                                        <h4>List Transactions</h4>
                                         <div class="card-header-form d-flex">
                                             <form class="mr-2">
                                                 <div class="input-group">
@@ -42,10 +42,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
-                                                        <th>Nama Siswa</th>
                                                         <th>Nomer Akun</th>
-                                                        <th>Saldo</th>
-                                                        <th style="width: 12%">Action</th>
+                                                        <th>Tanggal</th>
+                                                        <th>Jenis Transaksi</th>
+                                                        <th>Nominal</th>
+                                                        <th>Staff Name</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -53,9 +54,9 @@
                                                     <?php
                                                     if (!empty($_GET['search'])) {
                                                         $search = $_GET['search'];
-                                                        $data = $conn->query("SELECT * FROM savings_accounts INNER JOIN students ON savings_accounts.student_id = students.id WHERE students.name LIKE '%$search%'");
+                                                        $data = $conn->query("SELECT * FROM transactions INNER JOIN savings_accounts ON transactions.account_id = savings_accounts.id INNER JOIN users ON transactions.staff_id = users.id WHERE savings_accounts.account_number LIKE '%$search%'");
                                                     } else {
-                                                        $data = $conn->query("SELECT * FROM savings_accounts INNER JOIN students ON savings_accounts.student_id = students.id");
+                                                        $data = $conn->query("SELECT * FROM transactions INNER JOIN savings_accounts ON transactions.account_id = savings_accounts.id INNER JOIN users ON transactions.staff_id = users.id");
                                                     }
 
                                                     foreach ($data as $key => $value) {
@@ -65,26 +66,21 @@
                                                                 <?php echo $key + 1; ?>
                                                             </td>
                                                             <td>
-                                                                <?php echo $value['name']; ?>
-                                                            </td>
-                                                            <td>
                                                                 <?php echo $value['account_number']; ?>
                                                             </td>
                                                             <td>
+                                                                <?php echo $value['transaction_date']; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $value['transaction_type']; ?>
+                                                            </td>
+                                                            <td>
                                                                 <span class="currency">
-                                                                    <?php echo 'Rp' . number_format($value['balance'], 2, ',', '.'); ?>
+                                                                    <?php echo 'Rp' . number_format($value['amount'], 2, ',', '.'); ?>
                                                                 </span>
                                                             </td>
-                                                            <td style="width: 12%">
-                                                                <a href="transactions/index.php?id=<?php echo $value['id']; ?>" class="btn btn-info btn-sm btn-icon mb-2">
-                                                                    <i class="fas fa-eye"></i>
-                                                                </a>
-                                                                <a href="edit.php?id=<?php echo $value['id']; ?>" class="btn btn-warning btn-sm btn-icon mb-2">
-                                                                    <i class="fas fa-edit"></i>
-                                                                </a>
-                                                                <a href="#" class="btn btn-danger btn-sm btn-icon mb-2">
-                                                                    <i class="fas fa-trash"></i>
-                                                                </a>
+                                                            <td>
+                                                                <?php echo $value['username']; ?>
                                                             </td>
                                                         </tr>
                                                     <?php } ?>
