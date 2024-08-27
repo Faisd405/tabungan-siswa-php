@@ -42,6 +42,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No</th>
+                                                        <th>Pengguna</th>
                                                         <th>NIS</th>
                                                         <th>Nama</th>
                                                         <th>Nama Orangtua</th>
@@ -56,9 +57,9 @@
                                                     <?php
                                                     if (!empty($_GET['search'])) {
                                                         $search = $_GET['search'];
-                                                        $data = $conn->query("SELECT * FROM students WHERE name LIKE '%$search%'");
+                                                        $data = $conn->query("SELECT students.id, students.nis, students.name, students.parent_name, students.class, students.date_of_birth, students.address, users.username FROM students LEFT JOIN users ON students.user_id = users.id WHERE students.name LIKE '%$search%'");
                                                     } else {
-                                                        $data = $conn->query("SELECT * FROM students");
+                                                        $data = $conn->query("SELECT students.id, students.nis, students.name, students.parent_name, students.class, students.date_of_birth, students.address, users.username FROM students LEFT JOIN users ON students.user_id = users.id");
                                                     }
 
                                                     foreach ($data as $key => $value) {
@@ -66,6 +67,9 @@
                                                         <tr>
                                                             <td>
                                                                 <?php echo $key + 1; ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php echo $value['username'] ?? '-'; ?>
                                                             </td>
                                                             <td>
                                                                 <?php echo $value['nis']; ?>

@@ -1,4 +1,5 @@
 <?php include_once '../../layout/header.php'; ?>
+<?php include_once '../../config/database.php'; ?>
 <?php include_once '../../config/authorization.php'; ?>
 
 <body>
@@ -26,6 +27,22 @@
                                     </div>
                                     <div class="card-body p-0">
                                         <form method="POST" action="action_create.php">
+                                            <div class="form-group row mb-4">
+                                                <label for="user_id" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                                                    Pengguna (Optional)
+                                                </label>
+                                                <div class="col-sm-12 col-md-7">
+                                                    <?php
+                                                    $users = mysqli_query($conn, "SELECT id,username FROM users WHERE role='siswa'");
+                                                    ?>
+                                                    <select class="form-control" name="user_id" id="user_id">
+                                                        <option value="">Pilih Siswa</option>
+                                                        <?php while ($user = mysqli_fetch_assoc($users)) : ?>
+                                                            <option value="<?= $user['id'] ?>"><?= $user['username'] ?></option>
+                                                        <?php endwhile; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
                                             <div class="form-group row mb-4">
                                                 <label for="nis" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">NIS</label>
                                                 <div class="col-sm-12 col-md-7">

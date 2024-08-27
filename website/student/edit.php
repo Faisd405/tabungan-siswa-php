@@ -44,6 +44,22 @@ if (!$student) {
                                         <form method="POST" action="action_update.php">
                                             <input type="hidden" name="id" value="<?php echo $student['id'] ?>">
                                             <div class="form-group row mb-4">
+                                                <label for="user_id" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">
+                                                    Pengguna (Optional)
+                                                </label>
+                                                <div class="col-sm-12 col-md-7">
+                                                    <?php
+                                                    $users = mysqli_query($conn, "SELECT id,username FROM users WHERE role='siswa'");
+                                                    ?>
+                                                    <select class="form-control" name="user_id" id="user_id">
+                                                        <option value="">Pilih Siswa</option>
+                                                        <?php while ($user = mysqli_fetch_assoc($users)) : ?>
+                                                            <option value="<?= $user['id'] ?>" <?php echo $student['user_id'] == $user['id'] ? 'selected' : '' ?>><?= $user['username'] ?></option>
+                                                        <?php endwhile; ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-4">
                                                 <label for="nis" class="col-form-label text-md-right col-12 col-md-3 col-lg-3">NIS</label>
                                                 <div class="col-sm-12 col-md-7">
                                                     <input type="number" class="form-control" name="nis" id="nis" value="<?php echo $student['nis'] ?>" required>
